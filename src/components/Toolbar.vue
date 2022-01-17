@@ -1,7 +1,8 @@
 <template>
-<div class="w-full flex justify-between items-center px-20">
-  <span class="text-white text-lg">{{ count }} movies</span>
-  <portal-toggle label="Sort by" :toggle-elems="toggles"></portal-toggle>
+<div class="w-full flex justify-between items-center px-20 pt-4">
+  <span v-if="!genre" class="text-white text-lg">{{ count }} movies</span>
+  <span v-if="genre" class="text-white text-lg">Films by {{genre}} genre</span>
+  <portal-toggle v-if="!genre" label="Sort by" :toggle-elems="toggles" @change-toggler="changeFilter"></portal-toggle>
 </div>
 </template>
 
@@ -9,6 +10,9 @@
 import {defineComponent, PropType} from "vue";
 import portalToggle from "@/components/Toggle.vue";
 import IToggleElems from "@/types/ITogglers";
+import {FILTER_PARAMS_TOOLBAR} from "@/constants";
+import {state} from "@/store";
+import {sortBy} from "@/types/sortBy";
 
 export default defineComponent({
   name: 'portal-toolbar',
@@ -16,23 +20,26 @@ export default defineComponent({
     elems: {
       type: Array as PropType<IToggleElems[]>
     },
-    countItems: {
+    count: {
       type: Number,
     },
+    genre: {
+      type: String,
+    }
   },
   data: () => ({
-    toggles: [
-      {
-        name: 'release date',
-        key: '12'
-      },
-      {
-        name: 'rating',
-        key: '21'
-      }
-    ],
-    count: 7,
+    toggles: FILTER_PARAMS_TOOLBAR,
   }),
+  created() {
+    this.$nextTick(function () {
+      state.sortBy = this.toggles[0].id as sortBy;
+    })
+  },
+  methods: {
+    changeFilter(id: sortBy) {
+      state.sortBy = id;
+    }
+  },
   components: {
     portalToggle
   },

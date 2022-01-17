@@ -1,5 +1,7 @@
 <template>
-  <img src="@/assets/logo.png" alt="NetflixRoulette" :width="width" :height="height">
+  <a href="/" @click.prevent="$router.push('/')">
+    <img src="@/assets/logo.png" alt="NetflixRoulette" :width="width" :height="height">
+  </a>
 </template>
 
 <script lang="ts">
