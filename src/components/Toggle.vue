@@ -2,11 +2,11 @@
   <div class="flex items-center py-4">
     <span class="text-white uppercase text-lg mr-4">{{label}}</span>
     <div class="flex h-full" >
-      <button v-for="({name, key}, i) in toggleElems"
+      <button v-for="({name, key, id}, i) in toggleElems"
               :key="key"
-              @click.prevent="changeActiveElem(name)"
+              @click.prevent="changeActiveElem(id)"
               class="toggle-btn"
-              :class="[activeElem === name && 'active', i === toggleElems.length - 1 && 'rounded-r', i === 0 && 'rounded-l']"
+              :class="[activeElem === id && 'active', i === toggleElems.length - 1 && 'rounded-r', i === 0 && 'rounded-l']"
       >
         {{ name }}
       </button>
@@ -29,15 +29,15 @@ export default defineComponent({
   data: () => ({
     activeElem: '' as string
   }),
-  beforeMount() {
-    this.activeElem = this.$props.toggleElems.length ? this.$props.toggleElems[0].name : '';
-  },
-  beforeUpdate() {
-    this.activeElem = this.$props.toggleElems.length ? this.$props.toggleElems[0].name : '';
+  created() {
+    this.$nextTick(function () {
+      this.activeElem = this.$props.toggleElems.length ? this.$props.toggleElems[0].id : '';
+    })
   },
   methods: {
-    changeActiveElem(nameToggle: string) {
-      this.activeElem = nameToggle;
+    changeActiveElem(id: string) {
+      this.activeElem = id;
+      this.$emit('change-toggler', id);
     }
   }
 });
