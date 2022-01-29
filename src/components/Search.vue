@@ -5,7 +5,7 @@
       <text-field v-model:value="value" width="w-3/4" id="search" placeholder="Search" ></text-field>
       <large-button width="w-1/4" @click.prevent="search"> Search </large-button>
     </form>
-    <portal-toggle label="Search by" :toggle-elems="elems" @change-toggler="changeActiveElem"></portal-toggle>
+    <portal-toggle label="Search by" :active="activeFilter" :toggle-elems="elems" @change-toggler="changeActiveElem"></portal-toggle>
   </div>
 </template>
 
@@ -22,7 +22,8 @@ export default defineComponent({
   name: 'portal-search',
   data: () => ({
     elems: [] as ITogglers[],
-    value: '' as string
+    value: '' as string,
+    activeFilter: '' as string,
   }),
   props: {
     togglers: {
@@ -32,6 +33,7 @@ export default defineComponent({
   },
   mounted() {
     this.elems = this.$props.togglers ? this.$props.togglers : [];
+    this.activeFilter = state.searchBy;
   },
   methods: {
     search() {
