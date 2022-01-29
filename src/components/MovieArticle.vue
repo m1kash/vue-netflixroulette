@@ -13,7 +13,8 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from "vue";
+import {defineComponent, inject, PropType} from "vue";
+import IFormatter from "@/types/IFormatter";
 
 export default defineComponent({
   name: 'movie-article',
@@ -45,19 +46,18 @@ export default defineComponent({
       type: String,
     },
   },
-  setup: () => ({
-  }),
-  computed: {
-    allGenres(): string {
-      return this.$props.genres.join('&');
-    },
-    year(): string {
-      return this.$props.release_date.split('-')[0];
-    },
-    duration(): string {
-      return `${this.$props.runtime} min`;
+  setup: (props) => {
+    const formatters = inject('formatter') as IFormatter;
+    const year = formatters.year(props.release_date);
+    const allGenres = formatters.ampersandSeparator(props.genres);
+    const duration = formatters.duration(props.runtime);
+
+    return {
+      allGenres,
+      year,
+      duration
     }
-  }
+  },
 })
 </script>
 
