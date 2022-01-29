@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col flex">
+  <div class="flex-col flex" @click.prevent="openMovie(id)">
     <img :src="image" alt="image" height="370">
     <div class="flex flex-wrap mt-2">
       <div class="flex flex-col w-1/2">
@@ -15,8 +15,9 @@
 
 <script lang="ts">
 import { PropType } from 'vue/dist/vue';
+import {defineComponent} from "vue";
 
-export default {
+export default defineComponent({
   name: 'movie-item',
   props: {
     title: {
@@ -31,8 +32,14 @@ export default {
       type: Array as PropType<string[]>,
     },
     year: String,
-  }
-}
+    id: Number,
+  },
+  methods: {
+    openMovie(id: number) {
+      this.$router.push({ name: 'Movies', params: { id: id } });
+    }
+  },
+});
 </script>
 
 <style scoped>
