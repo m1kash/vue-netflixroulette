@@ -1,6 +1,6 @@
 <template>
   <div v-if="items.length" class="grid gap-12 gap-y-8 grid-cols-3 py-8">
-    <movie-item v-for="({title, poster_path, id, release_date, genres}) in items"  :title="title" :image="poster_path" :year="release_date" :genre="genres" :key="id" :id="id"  ></movie-item>
+    <movie-item v-for="({title, poster_path, id, release_date, genres}) in items"  :title="title" :image="poster_path" :release_date="release_date" :genres="genres" :key="id" :id="id"  ></movie-item>
   </div>
   <div class="text-4xl text-white text-center mt-4 mb-16" v-else>Oh no 😢 404</div>
 </template>
