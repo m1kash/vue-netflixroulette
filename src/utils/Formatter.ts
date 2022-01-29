@@ -6,11 +6,12 @@ const Formatter: IFormatter = {
 
     return DateInstance.getFullYear();
   },
-  ampersandSeparator(items) {
-    return items.join('&');
+  separator(items, separator) {
+    return items.join(separator);
   },
   duration(min) {
-    return `${min} min`;
+
+    return `${min || 0} min`;
   }
 };
 

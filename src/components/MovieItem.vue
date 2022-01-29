@@ -42,7 +42,7 @@ export default defineComponent({
   setup(props) {
     const formatters = inject('formatter') as IFormatter;
     const year = formatters.year(props.release_date);
-    const genresFormatted = formatters.ampersandSeparator(props.genres);
+    const genresFormatted = formatters.separator(props.genres, '&');
 
     return {
       genresFormatted,
