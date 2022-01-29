@@ -86,6 +86,6 @@ export const state = reactive({
   ],
   movie: {},
   sortBy: 'release_date',
-  searchBy: 'genres',
+  searchBy: 'title',
   searchText: ''
 } as IState);

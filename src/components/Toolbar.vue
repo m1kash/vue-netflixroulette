@@ -2,7 +2,7 @@
 <div class="w-full flex justify-between items-center px-20 pt-4">
   <span v-if="!genre" class="text-white text-lg">{{ count }} movies</span>
   <span v-if="genre" class="text-white text-lg">Films by {{genre}} genre</span>
-  <portal-toggle v-if="!genre" label="Sort by" :toggle-elems="toggles" @change-toggler="changeFilter"></portal-toggle>
+  <portal-toggle v-if="!genre" :active="activeFilter" label="Sort by" :toggle-elems="toggles" @change-toggler="changeFilter"></portal-toggle>
 </div>
 </template>
 
@@ -18,7 +18,7 @@ export default defineComponent({
   name: 'portal-toolbar',
   props: {
     elems: {
-      type: Array as PropType<IToggleElems[]>
+      type: Array as PropType<IToggleElems[]>,
     },
     count: {
       type: Number,
@@ -29,11 +29,10 @@ export default defineComponent({
   },
   data: () => ({
     toggles: FILTER_PARAMS_TOOLBAR,
+    activeFilter: '' as string,
   }),
-  created() {
-    this.$nextTick(function () {
-      state.sortBy = this.toggles[0].id as sortBy;
-    })
+  mounted() {
+    this.activeFilter = state.sortBy;
   },
   methods: {
     changeFilter(id: sortBy) {

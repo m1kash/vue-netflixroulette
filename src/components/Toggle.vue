@@ -17,6 +17,7 @@
 import {defineComponent, PropType} from "vue";
 import IToggleElems from "@/types/ITogglers";
 
+
 export default defineComponent({
   name: 'portal-toggle',
   props: {
@@ -25,13 +26,17 @@ export default defineComponent({
       type: Array as PropType<IToggleElems[]>
     },
     label: String,
+    active: {
+      type: String,
+      required: true
+    },
   },
   data: () => ({
     activeElem: '' as string
   }),
   created() {
     this.$nextTick(function () {
-      this.activeElem = this.$props.toggleElems.length ? this.$props.toggleElems[0].id : '';
+      this.activeElem = this.$props.active;
     })
   },
   methods: {

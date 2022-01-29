@@ -11,7 +11,3 @@ export default {
   name: 'search-button'
 }
 </script>
-
-<style scoped>
-
-</style>
