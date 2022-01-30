@@ -20,7 +20,6 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {RouteLocationNormalizedLoaded, useRoute} from "vue-router";
 import '@/styles/app.css';
 import portalLayout from '@/components/Container/Layout.vue';
 import portalHeader from '@/components/Container/Header.vue';
@@ -30,9 +29,11 @@ import PortalToolbar from "@/components/Toolbar.vue";
 import MovieList from "@/components/MovieList.vue";
 import MovieArticle from "@/components/MovieArticle.vue";
 import SearchButton from "@/components/SearchButton.vue";
-import {state} from "@/store";
-import IMovie from "@/types/IMovie";
 import ITogglers from "@/types/ITogglers";
+import {mapGetters} from "vuex";
+import {useRoute} from "vue-router";
+import {useStore} from "@/store";
+import {ActionsTypes} from "@/types/store/actions-types";
 
 export default defineComponent({
   name: 'movie-page',
@@ -51,24 +52,21 @@ export default defineComponent({
     ] as Array<ITogglers>,
     id: '' as string | string[],
   }),
-  computed: {
-    movie() {
-      const stateApp = state;
-      const router = useRoute() as RouteLocationNormalizedLoaded;
-      if (!router.params.id) {
-        return;
-      }
-      const movie: IMovie | undefined = stateApp.items.find((item: IMovie) => item.id.toString() === router.params.id);
+  setup() {
+    const router = useRoute();
+    const store = useStore();
 
-      return movie;
-    },
-    items() {
-      const stateApp = state;
-      const movie: IMovie | undefined = this.movie;
-      const filterItems: IMovie[] = stateApp.items.filter((item: IMovie) => item.genres.some((genre: string) => movie?.genres.includes(genre)));
-
-      return filterItems;
+    if (!router.params.id) {
+      return;
     }
+
+    store.dispatch(ActionsTypes.GET_MOVIE_BY_ID, +router.params.id);
+  },
+  computed: {
+    ...mapGetters({
+      movie: 'getMovie',
+      items: 'getRelatedMovies'
+    }),
   },
   components: {
     SearchButton,

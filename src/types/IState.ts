@@ -4,7 +4,9 @@ import { sortBy } from '@/types/sortBy'
 
 interface IState {
   items: Array<IMovie>,
-  movie: {},
+  movie: IMovie | {[key: string]: any  },
+  filteredMovies: Array<IMovie>,
+  relatedMovies: Array<IMovie>,
   sortBy: sortBy,
   searchBy: searchBy,
   searchText: string

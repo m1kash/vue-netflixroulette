@@ -14,9 +14,11 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue/dist/vue';
-import {defineComponent, inject} from "vue";
+import {defineComponent, inject, PropType} from "vue";
+import {useRouter} from "vue-router";
 import IFormatter from "@/types/IFormatter";
+import {ActionsTypes} from "@/types/store/actions-types";
+import {useStore} from "@/store";
 
 export default defineComponent({
   name: 'movie-item',
@@ -39,19 +41,21 @@ export default defineComponent({
     },
     id: Number,
   },
+
   setup(props) {
+    const store = useStore();
+    const router = useRouter();
     const formatters = inject('formatter') as IFormatter;
     const year = formatters.year(props.release_date);
     const genresFormatted = formatters.separator(props.genres, '&');
 
     return {
       genresFormatted,
-      year
-    }
-  },
-  methods: {
-    openMovie(id: number) {
-      this.$router.push({ name: 'Movies', params: { id: id } });
+      year,
+      openMovie(id: number) {
+        store.dispatch(ActionsTypes.GET_MOVIE_BY_ID, id);
+        router.push({ name: 'Movies', params: { id: id } });
+      }
     }
   },
 });

@@ -19,6 +19,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import {mapGetters} from 'vuex'
 import '@/styles/app.css';
 import portalLayout from '@/components/Container/Layout.vue';
 import portalHeader from '@/components/Container/Header.vue';
@@ -29,10 +30,8 @@ import PortalToolbar from "@/components/Toolbar.vue";
 import MovieList from "@/components/MovieList.vue";
 import ITogglers from "@/types/ITogglers";
 import { FILTER_PARAMS_SEARCH } from "@/constants";
-import { state } from "@/store";
-import IMovie from "@/types/IMovie";
-import {searchBy} from "@/types/searchTag";
-import {sortBy} from "@/types/sortBy";
+import {MutationTypes} from "@/types/store/mutation-types";
+import {useStore} from "@/store";
 
 export default defineComponent({
   name: 'Home-page',
@@ -40,24 +39,16 @@ export default defineComponent({
     searchText: '' as string,
     genres: FILTER_PARAMS_SEARCH as Array<ITogglers>,
   }),
+  setup() {
+    const store = useStore();
+
+    store.commit(MutationTypes.FILTER_MOVIES);
+  },
   computed: {
-    items() {
-      let resultItems: IMovie[] = state.searchText ? state.items.filter((item: IMovie) => {
-        const field = item[state.searchBy as searchBy];
-        const searchString = Array.isArray(field) ? field.join(' ') : field;
-
-        return searchString.toLowerCase().includes(state.searchText);
-      }) : state.items;
-      const getTime = (value: string | number) => new Date(value).getTime();
-      const sortField = state.sortBy as sortBy;
-      const sortFunction = state.sortBy === 'release_date'
-        ? (a: IMovie, b: IMovie) => getTime(b[sortField]) - getTime(a[sortField])
-        : (a: IMovie, b: IMovie) => (b[sortField] as number) - (a[sortField] as number);
-
-      resultItems = resultItems.sort(sortFunction);
-
-      return resultItems;
-    }
+    ...mapGetters({
+      items: 'getMovies',
+      countItems: 'getCountMovies'
+    })
   },
   components: {
     MovieList,
@@ -70,7 +61,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scoped>
-
-</style>
