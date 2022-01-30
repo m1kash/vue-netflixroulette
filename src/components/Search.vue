@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-wrap w-full h-full p-20">
-    <label for="search" class="uppercase font-extralight text-4xl text-white w-full mb-4 ">Find Your Movie</label>
+    <label class="uppercase font-extralight text-4xl text-white w-full mb-4 " for="search">Find Your Movie</label>
     <form class="space-x-4 flex w-full" @submit.prevent="search">
       <text-field v-model:value="value" width="w-3/4" id="search" placeholder="Search" ></text-field>
       <large-button width="w-1/4" @click.prevent="search"> Search </large-button>
@@ -10,13 +10,14 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
+import { defineComponent, PropType } from 'vue';
 import TextField from '@/components/TextField.vue';
 import LargeButton from '@/components/LargeButton.vue';
 import portalToggle from '@/components/Toggle.vue';
+import { ActionsTypes } from "@/types/store/actions-types";
 import ITogglers from "@/types/ITogglers";
-import {state} from "@/store";
-import {searchBy} from "@/types/searchTag";
+import { searchBy } from "@/types/searchTag";
+import {useStore} from "@/store";
 
 export default defineComponent({
   name: 'portal-search',
@@ -32,15 +33,17 @@ export default defineComponent({
     },
   },
   mounted() {
+    const store = useStore();
+
     this.elems = this.$props.togglers ? this.$props.togglers : [];
-    this.activeFilter = state.searchBy;
+    this.activeFilter = store.state.searchBy;
   },
   methods: {
     search() {
-      state.searchText = this.value;
+      this.$store.dispatch(ActionsTypes.FILTER_SEARCH_TEXT, this.value);
     },
     changeActiveElem(id: searchBy) {
-      state.searchBy = id;
+      this.$store.dispatch(ActionsTypes.FILTER_SEARCH_BY, id);
     }
   },
   components: { portalToggle, LargeButton, TextField }

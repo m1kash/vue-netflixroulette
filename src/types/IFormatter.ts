@@ -1,9 +1,9 @@
-type TFormat = string | number;
+type TFormat = string;
 
 interface IFormatter {
-  year(year: TFormat): TFormat,
-  ampersandSeparator(items: string[]): string,
-  duration(year: TFormat): string
+  year(year: TFormat): number,
+  separator(items: string[], separator: string): string,
+  duration(min: number): string
 }
 
 export default IFormatter;

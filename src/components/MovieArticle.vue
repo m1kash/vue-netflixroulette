@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, inject, PropType} from "vue";
+import {defineComponent, inject, onUpdated, PropType, ref} from "vue";
 import IFormatter from "@/types/IFormatter";
 
 export default defineComponent({
@@ -47,10 +47,20 @@ export default defineComponent({
     },
   },
   setup: (props) => {
+    const year = ref(0);
+    const allGenres = ref('');
+    const duration = ref('');
     const formatters = inject('formatter') as IFormatter;
-    const year = formatters.year(props.release_date);
-    const allGenres = formatters.ampersandSeparator(props.genres);
-    const duration = formatters.duration(props.runtime);
+
+    year.value = formatters.year(props.release_date);
+    allGenres.value = formatters.separator(props.genres, ' ');
+    duration.value = formatters.duration(props.runtime);
+
+    onUpdated(() => {
+      year.value = formatters.year(props.release_date);
+      allGenres.value = formatters.separator(props.genres, ' ');
+      duration.value = formatters.duration(props.runtime);
+    });
 
     return {
       allGenres,

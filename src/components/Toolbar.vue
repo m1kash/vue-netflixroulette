@@ -8,11 +8,13 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from "vue";
-import portalToggle from "@/components/Toggle.vue";
+import {mapState} from "vuex";
 import IToggleElems from "@/types/ITogglers";
-import {FILTER_PARAMS_TOOLBAR} from "@/constants";
-import {state} from "@/store";
 import {sortBy} from "@/types/sortBy";
+import {ActionsTypes} from "@/types/store/actions-types";
+import {useStore} from "@/store";
+import portalToggle from "@/components/Toggle.vue";
+import {FILTER_PARAMS_TOOLBAR} from "@/constants";
 
 export default defineComponent({
   name: 'portal-toolbar',
@@ -29,15 +31,20 @@ export default defineComponent({
   },
   data: () => ({
     toggles: FILTER_PARAMS_TOOLBAR,
-    activeFilter: '' as string,
   }),
-  mounted() {
-    this.activeFilter = state.sortBy;
+  setup() {
+    const store = useStore();
+
+    return {
+      changeFilter: (id: sortBy) => store.dispatch(ActionsTypes.CHANGE_SORT_BY, id)
+    }
   },
   methods: {
-    changeFilter(id: sortBy) {
-      state.sortBy = id;
-    }
+  },
+  computed: {
+    ...mapState({
+      activeFilter: 'sortBy'
+    })
   },
   components: {
     portalToggle

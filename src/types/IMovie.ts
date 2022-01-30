@@ -6,11 +6,11 @@ interface IMovie {
   vote_count: number,
   release_date: string,
   poster_path: string,
+  overview: string,
   budget: number,
   revenue: number,
-  overview: string,
   genres: Array<string>,
-  runtime: number
+  runtime: number | null
 }
 
 export default IMovie;
