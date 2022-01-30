@@ -7,7 +7,7 @@
     </template>
     <template v-slot:content>
       <portal-container>
-        <portal-toolbar :count="items.length"></portal-toolbar>
+        <portal-toolbar :count="countItems"></portal-toolbar>
         <movie-list :items="items"></movie-list>
       </portal-container>
     </template>
@@ -30,8 +30,8 @@ import PortalToolbar from "@/components/Toolbar.vue";
 import MovieList from "@/components/MovieList.vue";
 import ITogglers from "@/types/ITogglers";
 import { FILTER_PARAMS_SEARCH } from "@/constants";
-import {MutationTypes} from "@/types/store/mutation-types";
 import {useStore} from "@/store";
+import {ActionsTypes} from "@/types/store/actions-types";
 
 export default defineComponent({
   name: 'Home-page',
@@ -42,7 +42,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
 
-    store.commit(MutationTypes.FILTER_MOVIES);
+    store.dispatch(ActionsTypes.FILTER_SEARCH_TEXT, '');
   },
   computed: {
     ...mapGetters({

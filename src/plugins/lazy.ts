@@ -19,6 +19,9 @@ const lazyPlugin: Plugin = {
           entries.forEach(function(entry) {
             if (entry.isIntersecting) {
               el.setAttribute('src', bindings.value);
+              el.onerror = () => {
+                el.setAttribute('src', placeholder);
+              };
               lazyImageObserver.unobserve(el);
             }
           });

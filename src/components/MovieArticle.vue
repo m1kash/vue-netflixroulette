@@ -52,10 +52,11 @@ export default defineComponent({
     const duration = ref('');
     const formatters = inject('formatter') as IFormatter;
 
-    year.value = formatters.year(props.release_date);
-    allGenres.value = formatters.separator(props.genres, ' ');
-    duration.value = formatters.duration(props.runtime || 0);
-
+    if (props.release_date) {
+      year.value = formatters.year(props.release_date);
+      allGenres.value = formatters.separator(props.genres, ' ');
+      duration.value = formatters.duration(props.runtime || 0);
+    }
 
     onUpdated(() => {
       year.value = formatters.year(props.release_date);
