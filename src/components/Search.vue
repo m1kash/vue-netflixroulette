@@ -38,6 +38,9 @@ export default defineComponent({
     this.elems = this.$props.togglers ? this.$props.togglers : [];
     this.activeFilter = store.state.searchBy;
   },
+  updated() {
+    this.$store.dispatch(ActionsTypes.FILTER_SEARCH_TEXT, this.value);
+  },
   methods: {
     search() {
       this.$store.dispatch(ActionsTypes.FILTER_SEARCH_TEXT, this.value);

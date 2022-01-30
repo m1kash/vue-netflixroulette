@@ -2,8 +2,7 @@ import {MutationTree} from "vuex";
 import IState from "@/types/IState";
 import {Mutations, MutationTypes} from "@/types/store/mutation-types";
 import IMovie from "@/types/IMovie";
-import {searchBy} from "@/types/searchTag";
-import {sortBy} from "@/types/sortBy";
+import Filters from "@/utils/Filters";
 
 export const mutations: MutationTree<IState> & Mutations = {
   [MutationTypes.SET_MOVIE](state, payload) {
@@ -19,19 +18,16 @@ export const mutations: MutationTree<IState> & Mutations = {
     state.sortBy = payload;
   },
   [MutationTypes.FILTER_MOVIES](state) {
-    const resultItems: IMovie[] = state.searchText ? state.items.filter((item: IMovie) => {
-      const field = item[state.searchBy as searchBy];
-      const searchString = Array.isArray(field) ? field.join(' ') : field;
+    let items = [...state.items];
 
-      return searchString.toLowerCase().includes(state.searchText);
-    }) : state.items;
-    const getTime = (value: string | number) => new Date(value).getTime();
-    const sortField = state.sortBy as sortBy;
-    const sortFunction = state.sortBy === 'release_date'
-      ? (a: IMovie, b: IMovie) => getTime(b[sortField]) - getTime(a[sortField])
-      : (a: IMovie, b: IMovie) => (b[sortField] as number) - (a[sortField] as number);
+    if (state.searchText) {
+      items = Filters.searchBy(items, {
+        searchText: state.searchText,
+        prop: state.searchBy
+      })
+    }
 
-    state.filteredMovies = resultItems.sort(sortFunction);
+    state.filteredMovies = Filters.sortBy(items, state.sortBy);
   },
   [MutationTypes.FILTER_RELATED_MOVIES](state) {
     state.relatedMovies = state.items.filter(
