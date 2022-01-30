@@ -34,7 +34,7 @@ export default defineComponent({
     id: Number,
     runtime: {
       required: true,
-      type: Number,
+      type: [Number, null] as PropType<number | null>,
     },
     vote_average: {
       required: true,
@@ -54,12 +54,13 @@ export default defineComponent({
 
     year.value = formatters.year(props.release_date);
     allGenres.value = formatters.separator(props.genres, ' ');
-    duration.value = formatters.duration(props.runtime);
+    duration.value = formatters.duration(props.runtime || 0);
+
 
     onUpdated(() => {
       year.value = formatters.year(props.release_date);
       allGenres.value = formatters.separator(props.genres, ' ');
-      duration.value = formatters.duration(props.runtime);
+      duration.value = formatters.duration(props.runtime || 0);
     });
 
     return {
