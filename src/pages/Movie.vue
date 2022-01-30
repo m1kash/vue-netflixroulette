@@ -8,7 +8,7 @@
     </template>
     <template v-slot:content>
       <portal-container>
-        <portal-toolbar :count="items.length" :genre="movie.genres[0]"></portal-toolbar>
+        <portal-toolbar :count="items.length" :genre="genreRelated"></portal-toolbar>
         <movie-list :items="items"></movie-list>
       </portal-container>
     </template>
@@ -65,7 +65,8 @@ export default defineComponent({
   computed: {
     ...mapGetters({
       movie: 'getMovie',
-      items: 'getRelatedMovies'
+      items: 'getRelatedMovies',
+      genreRelated: 'getFirstGenreMovie'
     }),
   },
   components: {

@@ -4,7 +4,7 @@ import {Getters} from "@/types/store/getters-types";
 
 export const getters: GetterTree<IState, IState> & Getters = {
   getMovies(state) {
-    return state.filteredMovies;
+    return state.items;
   },
   getMovie(state) {
     return state.movie;
@@ -13,6 +13,9 @@ export const getters: GetterTree<IState, IState> & Getters = {
     return state.relatedMovies;
   },
   getCountMovies(state) {
-    return state.filteredMovies.length;
+    return state.items.length;
+  },
+  getFirstGenreMovie(state) {
+    return state.movie.genres ? state.movie.genres[0] : '';
   }
 }
