@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col flex"
+  <div class="aqa-movie flex-col flex"
        @click.prevent="openMovie(id)"
        @keyup.enter="openMovie(id)">
     <img v-lazy="image" alt="image" height="370">

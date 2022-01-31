@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieList.vue render correct 1`] = `
+<div
+  class="aqa-movie-list grid gap-12 gap-y-8 grid-cols-3 py-8"
+>
+  
+  <div
+    class="aqa-movie flex-col flex"
+  >
+    <img
+      alt="image"
+      height="370"
+    />
+    <div
+      class="flex flex-wrap mt-2"
+    >
+      <div
+        class="flex flex-col w-1/2"
+      >
+        <div
+          class="text-zinc-500 text-lg"
+        >
+          Test 1
+        </div>
+      </div>
+      <div
+        class="w-1/2 flex justify-end items-start"
+      >
+        <div
+          class="text-zinc-400 border border-solid border-zinc-500 rounded p-0.5 px-4"
+        >
+          2020
+        </div>
+      </div>
+      <div
+        class="text-zinc-600 w-full"
+      >
+        Action&Adventure&Science Fiction
+      </div>
+    </div>
+  </div>
+  <div
+    class="aqa-movie flex-col flex"
+  >
+    <img
+      alt="image"
+      height="370"
+    />
+    <div
+      class="flex flex-wrap mt-2"
+    >
+      <div
+        class="flex flex-col w-1/2"
+      >
+        <div
+          class="text-zinc-500 text-lg"
+        >
+          Test 2
+        </div>
+      </div>
+      <div
+        class="w-1/2 flex justify-end items-start"
+      >
+        <div
+          class="text-zinc-400 border border-solid border-zinc-500 rounded p-0.5 px-4"
+        >
+          2019
+        </div>
+      </div>
+      <div
+        class="text-zinc-600 w-full"
+      >
+        Science Fiction&Action&Adventure
+      </div>
+    </div>
+  </div>
+  <div
+    class="aqa-movie flex-col flex"
+  >
+    <img
+      alt="image"
+      height="370"
+    />
+    <div
+      class="flex flex-wrap mt-2"
+    >
+      <div
+        class="flex flex-col w-1/2"
+      >
+        <div
+          class="text-zinc-500 text-lg"
+        >
+          Test 3
+        </div>
+      </div>
+      <div
+        class="w-1/2 flex justify-end items-start"
+      >
+        <div
+          class="text-zinc-400 border border-solid border-zinc-500 rounded p-0.5 px-4"
+        >
+          2019
+        </div>
+      </div>
+      <div
+        class="text-zinc-600 w-full"
+      >
+        Action&Adventure&Science Fiction
+      </div>
+    </div>
+  </div>
+  
+</div>
+`;

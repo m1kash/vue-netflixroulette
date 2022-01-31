@@ -10,3 +10,11 @@ declare module '@vue/runtime-core' {
     $store: Store<State>
   }
 }
+
+declare global {
+  namespace NodeJS {
+    interface Global {
+      [name: string]: any;
+    }
+  }
+}

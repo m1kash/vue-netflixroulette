@@ -62,5 +62,5 @@
     "vue-cli-plugin-storybook": "^3.0.0-rc.0",
     "vue-jest": "^5.0.0-0",
     "vue-loader": "^16.8.3"
-  },
+  }
 }
