@@ -3,9 +3,9 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'header-texture': "url('../assets/header-texture.jpeg')"
-      }
-    }
+        'header-texture': "url('../assets/header-texture.jpeg')",
+      },
+    },
   },
   plugins: [],
-}
+};

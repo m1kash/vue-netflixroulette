@@ -1,10 +1,10 @@
-import {sortBy} from "@/types/sortBy";
-import {searchBy} from "@/types/searchTag";
-import IMovie from "@/types/IMovie";
+import { sortBy } from '@/types/sortBy';
+import { searchBy } from '@/types/searchTag';
+import IMovie from '@/types/IMovie';
 
 interface IClient {
   baseUrl?: string;
-  get<T = any>(endpoint: string): Promise<T>,
+  get<T = any>(endpoint: string): Promise<T>
   post?(endpoint: string, payload: JSON): Promise<Response>,
 }
 
@@ -24,5 +24,5 @@ interface IParams {
 export {
   IClient,
   IApiService,
-  IParams
-}
+  IParams,
+};

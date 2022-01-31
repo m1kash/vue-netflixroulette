@@ -1,11 +1,20 @@
 <template>
   <div class="flex flex-wrap w-full h-full p-20">
-    <label class="uppercase font-extralight text-4xl text-white w-full mb-4 " for="search">Find Your Movie</label>
+    <span class="uppercase font-extralight text-4xl text-white w-full mb-4"
+     for="search">
+    Find Your Movie
+    </span>
     <form class="space-x-4 flex w-full" @submit.prevent="search">
-      <text-field v-model:value="value" width="w-3/4" id="search" placeholder="Search" ></text-field>
-      <large-button width="w-1/4" @click.prevent="search"> Search </large-button>
+      <text-field v-model:value="value"
+                  width="w-3/4" id="search"
+                  placeholder="Search" />
+      <large-button width="w-1/4" @click.prevent="search">
+        Search
+      </large-button>
     </form>
-    <portal-toggle label="Search by" :active="activeFilter" :toggle-elems="elems" @change-toggler="changeActiveElem"></portal-toggle>
+    <portal-toggle label="Search by" :active="activeFilter"
+                   :toggle-elems="elems"
+                   @change-toggler="changeActiveElem"></portal-toggle>
   </div>
 </template>
 
@@ -14,10 +23,10 @@ import { defineComponent, PropType } from 'vue';
 import TextField from '@/components/TextField.vue';
 import LargeButton from '@/components/LargeButton.vue';
 import portalToggle from '@/components/Toggle.vue';
-import { ActionsTypes } from "@/types/store/actions-types";
-import ITogglers from "@/types/ITogglers";
-import { searchBy } from "@/types/searchTag";
-import {useStore} from "@/store";
+import { ActionsTypes } from '@/types/store/actions-types';
+import ITogglers from '@/types/ITogglers';
+import { searchBy } from '@/types/searchTag';
+import { useStore } from '@/store';
 
 export default defineComponent({
   name: 'portal-search',
@@ -29,7 +38,7 @@ export default defineComponent({
   props: {
     togglers: {
       type: Array as PropType<ITogglers[]>,
-      required: true
+      required: true,
     },
   },
   mounted() {
@@ -47,8 +56,8 @@ export default defineComponent({
     },
     changeActiveElem(id: searchBy) {
       this.$store.dispatch(ActionsTypes.FILTER_SEARCH_BY, id);
-    }
+    },
   },
-  components: { portalToggle, LargeButton, TextField }
-})
+  components: { portalToggle, LargeButton, TextField },
+});
 </script>

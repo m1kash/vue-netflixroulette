@@ -1,19 +1,19 @@
-import portalToggle from "@/components/Toggle.vue";
-import {Meta, Story} from "@storybook/vue3";
-import {defineComponent} from "vue";
+import portalToggle from '@/components/Toggle.vue';
+import { Meta, Story } from '@storybook/vue3';
+import { defineComponent } from 'vue';
 
 export default {
   title: 'Components/Toggle',
   component: portalToggle,
   decorators: [() => ({
-    template: '<div class="bg-stone-800 min-h-screen h-full p-4"><story/></div>'
+    template: '<div class="bg-stone-800 min-h-screen h-full p-4"><story/></div>',
   })],
 } as Meta;
 
-const toggleTemplate: Story = args => defineComponent({
+const toggleTemplate: Story = (args) => defineComponent({
   components: { portalToggle },
   setup: () => ({ args }),
-  template: `<portal-toggle :toggle-elems="args.elems" :label="args.label"></portal-toggle>`,
+  template: '<portal-toggle :toggle-elems="args.elems" :label="args.label"></portal-toggle>',
 });
 
 export const twoElems = toggleTemplate.bind({});
@@ -23,16 +23,16 @@ twoElems.args = {
   elems: [
     {
       name: 'one toggle',
-      key: '1'
+      key: '1',
     },
     {
       name: 'two toggle',
-      key: '2'
+      key: '2',
     },
     {
       name: 'three toggle',
-      key: '3'
-    }
+      key: '3',
+    },
   ],
 };
 
@@ -43,23 +43,23 @@ manyElems.args = {
   elems: [
     {
       name: 'one toggle',
-      key: '1'
+      key: '1',
     },
     {
       name: 'two toggle',
-      key: '2'
+      key: '2',
     },
     {
       name: 'three toggle',
-      key: '3'
+      key: '3',
     },
     {
       name: 'four toggle',
-      key: '4'
+      key: '4',
     },
     {
       name: 'five toggle',
-      key: '5'
-    }
+      key: '5',
+    },
   ],
 };

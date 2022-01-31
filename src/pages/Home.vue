@@ -19,19 +19,19 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex';
 import '@/styles/app.css';
 import portalLayout from '@/components/Container/Layout.vue';
 import portalHeader from '@/components/Container/Header.vue';
 import portalFooter from '@/components/Container/Footer.vue';
 import PortalContainer from '@/components/Container/PortalContainer.vue';
-import portalSearch from "@/components/Search.vue";
-import PortalToolbar from "@/components/Toolbar.vue";
-import MovieList from "@/components/MovieList.vue";
-import ITogglers from "@/types/ITogglers";
-import { FILTER_PARAMS_SEARCH } from "@/constants";
-import {useStore} from "@/store";
-import {ActionsTypes} from "@/types/store/actions-types";
+import portalSearch from '@/components/Search.vue';
+import PortalToolbar from '@/components/Toolbar.vue';
+import MovieList from '@/components/MovieList.vue';
+import ITogglers from '@/types/ITogglers';
+import { FILTER_PARAMS_SEARCH } from '@/constants';
+import { useStore } from '@/store';
+import { ActionsTypes } from '@/types/store/actions-types';
 
 export default defineComponent({
   name: 'Home-page',
@@ -47,8 +47,8 @@ export default defineComponent({
   computed: {
     ...mapGetters({
       items: 'getMovies',
-      countItems: 'getCountMovies'
-    })
+      countItems: 'getCountMovies',
+    }),
   },
   components: {
     MovieList,
@@ -57,7 +57,7 @@ export default defineComponent({
     portalHeader,
     portalFooter,
     PortalContainer,
-    portalSearch
+    portalSearch,
   },
-})
+});
 </script>

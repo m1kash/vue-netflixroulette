@@ -1,8 +1,8 @@
-import {MutationTree} from "vuex";
-import IState from "@/types/IState";
-import {Mutations, MutationTypes} from "@/types/store/mutation-types";
+import { MutationTree } from 'vuex';
+import IState from '@/types/IState';
+import { Mutations, MutationTypes } from '@/types/store/mutation-types';
 
-export const mutations: MutationTree<IState> & Mutations = {
+const mutations: MutationTree<IState> & Mutations = {
   [MutationTypes.SET_MOVIE](state, payload) {
     state.movie = payload;
   },
@@ -21,4 +21,6 @@ export const mutations: MutationTree<IState> & Mutations = {
   [MutationTypes.FILTER_RELATED_MOVIES](state, payload) {
     state.relatedMovies = payload;
   },
-}
+};
+
+export default mutations;

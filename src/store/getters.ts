@@ -1,8 +1,8 @@
-import {GetterTree} from "vuex";
-import IState from "@/types/IState";
-import {Getters} from "@/types/store/getters-types";
+import { GetterTree } from 'vuex';
+import IState from '@/types/IState';
+import { Getters } from '@/types/store/getters-types';
 
-export const getters: GetterTree<IState, IState> & Getters = {
+const getters: GetterTree<IState, IState> & Getters = {
   getMovies(state) {
     return state.items;
   },
@@ -17,5 +17,7 @@ export const getters: GetterTree<IState, IState> & Getters = {
   },
   getFirstGenreMovie(state) {
     return state.movie.genres ? state.movie.genres[0] : '';
-  }
-}
+  },
+};
+
+export default getters;

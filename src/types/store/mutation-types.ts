@@ -1,7 +1,7 @@
-import IState from "@/types/IState";
-import {searchBy} from "@/types/searchTag";
-import {sortBy} from "@/types/sortBy";
-import IMovie from "@/types/IMovie";
+import IState from '@/types/IState';
+import { searchBy } from '@/types/searchTag';
+import { sortBy } from '@/types/sortBy';
+import IMovie from '@/types/IMovie';
 
 export enum MutationTypes {
   SET_MOVIE = 'SET_MOVIE',

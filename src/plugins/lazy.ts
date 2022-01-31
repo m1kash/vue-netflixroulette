@@ -1,4 +1,4 @@
-import {Directive, Plugin} from "@vue/runtime-core";
+import { Directive, Plugin } from 'vue';
 
 export interface IOptionsLazy {
   width: number,
@@ -9,19 +9,23 @@ export interface IOptionsLazy {
 
 const lazyPlugin: Plugin = {
   install: (app, options: IOptionsLazy) => {
-    const placeholder = options.customImage ||
-      `https://via.placeholder.com/${options.width}x${options.height}.png?text=${options.placeText}`;
+    const img = `https://via.placeholder.com/${options.width}x${options.height}.png?text=${options.placeText}`;
+    const placeholder = options.customImage
+      || img;
 
     app.directive('lazy', {
       mounted(el: HTMLElement, bindings) {
-        const callback: IntersectionObserverCallback = function(entries) {
+        const callback: IntersectionObserverCallback = function callbackLazy(
+          entries,
+        ) {
           el.setAttribute('src', placeholder);
-          entries.forEach(function(entry) {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
               el.setAttribute('src', bindings.value);
-              el.onerror = () => {
+              el.addEventListener('error', () => {
                 el.setAttribute('src', placeholder);
-              };
+              });
+              // eslint-disable-next-line
               lazyImageObserver.unobserve(el);
             }
           });
@@ -29,9 +33,9 @@ const lazyPlugin: Plugin = {
         const lazyImageObserver = new IntersectionObserver(callback);
 
         lazyImageObserver.observe(el);
-      }
-    } as Directive)
-  }
+      },
+    } as Directive);
+  },
 };
 
 export default lazyPlugin;

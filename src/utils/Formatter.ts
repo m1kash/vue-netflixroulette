@@ -1,4 +1,4 @@
-import IFormatter from "@/types/IFormatter";
+import IFormatter from '@/types/IFormatter';
 
 const Formatter: IFormatter = {
   year(date) {
@@ -10,9 +10,8 @@ const Formatter: IFormatter = {
     return items.join(separator);
   },
   duration(min) {
-
     return `${min || 0} min`;
-  }
+  },
 };
 
 export default Formatter;
