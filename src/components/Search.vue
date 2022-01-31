@@ -4,7 +4,7 @@
      for="search">
     Find Your Movie
     </span>
-    <form class="space-x-4 flex w-full" @submit.prevent="search">
+    <form class="space-x-4 flex w-full aqa-form-search" @submit.prevent="search">
       <text-field v-model:value="value"
                   width="w-3/4" id="search"
                   placeholder="Search" />
