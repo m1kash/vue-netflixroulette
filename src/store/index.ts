@@ -1,12 +1,12 @@
 import IState from '@/types/IState';
-import {createStore, useStore as baseUseStore} from 'vuex';
-import { getters } from "@/store/getters";
-import {mutations} from "@/store/mutations";
-import {actions} from "@/store/actions";
+import { createStore, useStore as baseUseStore } from 'vuex';
+import getters from '@/store/getters';
+import mutations from '@/store/mutations';
+import actions from '@/store/actions';
 
-export const key = Symbol();
+export const key = Symbol('Key store');
 const store = createStore<IState>({
-  state () {
+  state() {
     return {
       items: [],
       filteredMovies: [],
@@ -14,12 +14,12 @@ const store = createStore<IState>({
       movie: {},
       sortBy: 'release_date',
       searchBy: 'title',
-      searchText: ''
-    }
+      searchText: '',
+    };
   },
-  getters: getters,
-  mutations: mutations,
-  actions: actions
+  getters,
+  mutations,
+  actions,
 });
 
 export function useStore() {

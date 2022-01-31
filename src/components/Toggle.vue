@@ -6,7 +6,11 @@
               :key="key"
               @click.prevent="changeActiveElem(id)"
               class="toggle-btn"
-              :class="[activeElem === id && 'active', i === toggleElems.length - 1 && 'rounded-r', i === 0 && 'rounded-l']"
+              :class="[
+                activeElem === id && 'active',
+                i === toggleElems.length - 1 && 'rounded-r',
+                i === 0 && 'rounded-l'
+              ]"
       >
         {{ name }}
       </button>
@@ -14,37 +18,36 @@
   </div>
 </template>
 <script lang="ts">
-import {defineComponent, PropType} from "vue";
-import IToggleElems from "@/types/ITogglers";
-
+import { defineComponent, PropType } from 'vue';
+import IToggleElems from '@/types/ITogglers';
 
 export default defineComponent({
   name: 'portal-toggle',
   props: {
     toggleElems: {
       required: true,
-      type: Array as PropType<IToggleElems[]>
+      type: Array as PropType<IToggleElems[]>,
     },
     label: String,
     active: {
       type: String,
-      required: true
+      required: true,
     },
   },
   data: () => ({
-    activeElem: '' as string
+    activeElem: '' as string,
   }),
   created() {
-    this.$nextTick(function () {
+    this.$nextTick(function nextTick() {
       this.activeElem = this.$props.active;
-    })
+    });
   },
   methods: {
     changeActiveElem(id: string) {
       this.activeElem = id;
       this.$emit('change-toggler', id);
-    }
-  }
+    },
+  },
 });
 </script>
 <style scoped>
@@ -56,4 +59,3 @@ export default defineComponent({
   @apply bg-rose-500 hover:bg-rose-600 bg-opacity-100;
 }
 </style>
-

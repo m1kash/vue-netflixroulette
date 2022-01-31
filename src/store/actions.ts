@@ -1,8 +1,8 @@
-import {IActions, ActionsTypes} from "@/types/store/actions-types";
-import {MutationTypes} from "@/types/store/mutation-types";
-import Services from "@/services";
+import { IActions, ActionsTypes } from '@/types/store/actions-types';
+import { MutationTypes } from '@/types/store/mutation-types';
+import Services from '@/services';
 
-export const actions: IActions = {
+const actions: IActions = {
   async [ActionsTypes.FILTER_SEARCH_TEXT]({ commit, state }, payload) {
     const movies = await Services.axios.getMovies({
       sortBy: state.sortBy,
@@ -45,4 +45,6 @@ export const actions: IActions = {
     commit(MutationTypes.SET_MOVIE, movie);
     commit(MutationTypes.FILTER_RELATED_MOVIES, movies);
   },
-}
+};
+
+export default actions;

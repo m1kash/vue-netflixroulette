@@ -1,5 +1,6 @@
 <template>
-  <div class="flex flex-col bg-stone-800 justify-items-center min-h-screen h-full">
+  <div class="flex flex-col bg-stone-800
+  justify-items-center min-h-screen h-full">
     <header>
       <slot name="header"></slot>
     </header>
@@ -13,9 +14,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent} from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'portalLayout'
+  name: 'portalLayout',
 });
 </script>

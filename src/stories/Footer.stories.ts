@@ -8,12 +8,12 @@ export default {
   argTypes: {
     default: {
       content: 'Slot content',
-    }
-  }
+    },
+  },
 } as Meta;
 
-export const Default: Story = args => defineComponent({
+export const Default: Story = (args) => defineComponent({
   components: { PortalFooter },
   setup: () => ({ args }),
-  template: `<portal-footer/>`,
+  template: '<portal-footer/>',
 });

@@ -1,6 +1,7 @@
 <template>
   <a href="/" @click.prevent="$router.push('/')">
-    <img src="@/assets/logo.png" alt="NetflixRoulette" :width="width" :height="height">
+    <img src="@/assets/logo.png" alt="NetflixRoulette"
+         :width="width" :height="height">
   </a>
 </template>
 
@@ -13,8 +14,8 @@ export default defineComponent({
     width: String,
     height: {
       type: String,
-      default: 'auto'
+      default: 'auto',
     },
-  }
-})
+  },
+});
 </script>
