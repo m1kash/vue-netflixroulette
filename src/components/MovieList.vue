@@ -5,7 +5,7 @@
               :genres="genres" :key="id" :id="id"  ></movie-item>
   </div>
   <div class="aqa-404 text-4xl text-white text-center mt-4 mb-16" v-else>
-    Oh no 😢 404
+    No films found 😢
   </div>
 </template>
 

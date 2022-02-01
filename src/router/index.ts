@@ -1,17 +1,23 @@
 import Home from '@/pages/Home.vue';
 import Movie from '@/pages/Movie.vue';
+import NotFound from '@/pages/404.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
+  {
+    path: '/',
+    component: Home,
+    name: 'Home',
+  },
   {
     path: '/movies/:id',
     component: Movie,
     name: 'Movies',
   },
   {
-    path: '/',
-    component: Home,
-    name: 'Home',
+    path: '/:pathMatch(.*)*',
+    component: NotFound,
+    name: '404',
   },
 ];
 
