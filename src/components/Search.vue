@@ -5,7 +5,7 @@
     Find Your Movie
     </span>
     <form class="space-x-4 flex w-full aqa-form-search" @submit.prevent="search">
-      <text-field v-model:value="value"
+      <text-field v-model:value="value" @keyup="search"
                   width="w-3/4" id="search"
                   placeholder="Search" />
       <large-button width="w-1/4" @click.prevent="search">
@@ -47,12 +47,14 @@ export default defineComponent({
     this.elems = this.$props.togglers ? this.$props.togglers : [];
     this.activeFilter = store.state.searchBy;
   },
-  updated() {
-    this.$store.dispatch(ActionsTypes.FILTER_SEARCH_TEXT, this.value);
-  },
   methods: {
     search() {
+      let config = {};
       this.$store.dispatch(ActionsTypes.FILTER_SEARCH_TEXT, this.value);
+      if (this.value) {
+        config = { query: { search: this.value } };
+      }
+      this.$router.push({ name: 'Home', ...config });
     },
     changeActiveElem(id: searchBy) {
       this.$store.dispatch(ActionsTypes.FILTER_SEARCH_BY, id);
