@@ -1,7 +1,6 @@
 # Netflix roullette
 
-### I've used in the project libraries:
-
+###  I've used on the project the libraries such as :
  - Vue
  - Vuex
  - Vue router
