@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieArticle.vue render correct 1`] = `
+<div
+  budget="0"
+  class="flex"
+  revenue="0"
+  tagline=""
+  vote_count="9"
+>
+  <div
+    class="w-1/4 pr-4"
+  >
+    <img
+      alt="image"
+      src="https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg"
+      width="270"
+    />
+  </div>
+  <div
+    class="w-3/4 space-y-4 font-extralight"
+  >
+    <h1
+      class="text-4xl text-zinc-200 after:inline-flex after:justify-center after:items-center after:border-zinc-500 after:border after:border-solid after:rounded-full after:ml-5 after:text-3xl after:w-16 after:h-16 after:text-green-500 after:content-[attr(data-rating)]"
+      data-rating="2"
+    >
+      Test 1
+    </h1>
+    <div
+      class="text-xl text-zinc-300"
+    >
+      Action Adventure Science Fiction
+    </div>
+    <div
+      class="text-rose-500 text-2xl"
+    >
+      2020   0 min
+    </div>
+    <p
+      class="text-xl text-zinc-300"
+    >
+      The third film based on Marvel's Guardians of the Galaxy.
+    </p>
+  </div>
+</div>
+`;
